@@ -35,7 +35,7 @@ function sendAudioToServer(blob) {
   const formData = new FormData();
   formData.append("audio", blob, "output.m4a");
 
-  fetch("https://leafy-gaufre-40547e.netlify.app/upload", {
+  fetch("10.50.10.129:3000/uploads", {
     // Replace 'https://your-server.com/upload' with your actual upload URL
     method: "POST",
     body: formData,
