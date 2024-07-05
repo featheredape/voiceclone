@@ -35,7 +35,7 @@ function sendAudioToServer(blob) {
   const formData = new FormData();
   formData.append("audio", blob, "output.m4a");
 
-  fetch("10.50.10.129:3000/uploads", {
+  fetch("10.50.10.129:3000/upload", {
     // Replace 'https://your-server.com/upload' with your actual upload URL
     method: "POST",
     body: formData,

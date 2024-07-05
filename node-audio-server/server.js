@@ -21,6 +21,16 @@ app.post("/upload", upload.single("audio"), (req, res) => {
   res.json({ message: "Successfully uploaded " + req.file.filename });
 });
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*"); // allow any origin
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept",
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  next();
+});
+
 app.get("/:universalURL", (req, res) => {
   res.send("404 URL NOT FOUND");
 });
