@@ -208,15 +208,28 @@
             }
 
             function playAudio(audioURL) {
-                const audio = new Audio(audioURL);
-                audio
-                    .play()
-                    .catch((e) => console.error("Error playing audio:", e));
+              soundEffect.src = audioURL;
+                // const audio = new Audio(audioURL);
+                // audio
+                //     .play()
+                //     .catch((e) => console.error("Error playing audio:", e));
             }
 
             document
                 .getElementById("playButton")
                 .addEventListener("click", playButtonHandler);
+
+                let soundEffect;
+
+            // on ios we must only do things on user interaction so we use this awkward workaround
+            document.addEventListener('scroll', () => {
+              console.log('scroll');
+              if (soundEffect) return;
+              soundEffect = new Audio();
+              soundEffect.autoplay = true;
+              // very short sound of nothing...
+              soundEffect.src = "data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAA1N3aXRjaCBQbHVzIMKpIE5DSCBTb2Z0d2FyZQBUSVQyAAAABgAAAzIyMzUAVFNTRQAAAA8AAANMYXZmNTcuODMuMTAwAAAAAAAAAAAAAAD/80DEAAAAA0gAAAAATEFNRTMuMTAwVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQsRbAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQMSkAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV";
+            });
         </script>
     </body>
 </html>
