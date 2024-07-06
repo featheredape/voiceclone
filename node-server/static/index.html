@@ -4,21 +4,111 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Audio Recorder</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                background-color: #f5f5f5;
+                color: #333;
+            }
+            h1 {
+                font-size: 2em;
+                margin-bottom: 1em;
+            }
+            p {
+                max-width: 800px;
+                margin: 1em;
+                text-align: justify;
+            }
+            button {
+                font-size: 1em;
+                padding: 10px 20px;
+                margin: 10px;
+                cursor: pointer;
+                border: none;
+                border-radius: 5px;
+                background-color: #007bff;
+                color: white;
+            }
+            button:disabled {
+                background-color: #cccccc;
+            }
+            #status {
+                margin-top: 20px;
+                font-weight: bold;
+            }
+        </style>
     </head>
     <body>
-        <h1>Audio Recorder</h1>
-        <button id="startButton">Start</button>
-        <button id="stopButton" disabled>Stop</button>
-        <p id="status"></p>
-        <!-- <audio id="audioPlayback" controls></audio> -->
-
         <h1>Lend me your Voice</h1>
-        <button id="playButton">Play Speech</button>
+        <p>
+            Directions/Instructions: Please click “record” and read the
+            following passage in full – out loud, clear, and in your natural
+            voice. Do not worry if you need to restart a word or sentence – just
+            keep reading till the end. Thank you for taking part in this
+            project!
+        </p>
+        <button id="startButton">Start Recording</button>
 
+        <p>
+            Let us consider the following question: Do you own your voice? Most
+            of us assume that our voice is something that makes us unique, that
+            it belongs to us, and that it forms an essential part of who we are
+            as individuals. In fact, we often recognize specific people
+            instantly by the sound of their voice. However, with recent advances
+            in machine learning, it’s now possible to clone someone’s voice with
+            relatively short audio clips, such as a message left on voicemail or
+            through an audio passage read at an art exhibit.
+        </p>
+
+        <p>
+            On the positive side, voice cloning software has several beneficial
+            purposes. For instance, it can recreate an actor’s voice for dubbing
+            in films, read an audiobook in your favourite author’s voice, and
+            give Siri or any other personal digital assistant any voice you
+            want. Additionally, voice cloning can have deeply personal
+            applications, such as taking old recordings of deceased relatives
+            and resurrecting their voices for conversations when you’re lonely.
+            This can provide comfort and a sense of connection to loved ones who
+            are no longer with us.
+        </p>
+
+        <p>
+            As with any new technological innovation, the malicious potential of
+            voice cloning cannot be ignored. The Federal Trade Commission (FTC)
+            suggests that if someone who sounds like a friend or relative calls
+            you asking for money — particularly if they want to be paid via a
+            wire transfer, cryptocurrency, or a gift card — you should hang up
+            and call the person directly to verify their story. This advice
+            stems from cases where people in Canada have already fallen victim
+            to scams involving voice cloning. These incidents highlight the
+            dangers of this technology in perpetrating fraud and the need for
+            caution in our increasingly digital world.
+        </p>
+
+        <p>
+            Though voice cloning technology isn't perfect yet, it's advancing
+            rapidly. We are fast approaching a future where even a short audio
+            clip — like the one you’re recording now — could be used to recreate
+            your distinct voice. This impending reality challenges us to address
+            the line between innovation and personal identity, and to question
+            who in the future truly owns the essence of our own voice.
+        </p>
+        <button id="stopButton" disabled>Stop Recording</button>
+        <p id="status"></p>
+        <p>After you've recorded, let's process your speech.</p>
+        <button id="playButton">PROCESS SPEECH</button>
+        <p></p>
+        <p></p>
         <script>
             let uploadId;
 
-            // Record button
             document.addEventListener("DOMContentLoaded", () => {
                 const startButton = document.getElementById("startButton");
                 const stopButton = document.getElementById("stopButton");
@@ -29,7 +119,6 @@
                 let audioChunks = [];
 
                 startButton.addEventListener("click", async () => {
-                    // Request access to the user's microphone
                     try {
                         const stream =
                             await navigator.mediaDevices.getUserMedia({
@@ -51,7 +140,6 @@
                             audioPlayback.src = audioUrl;
                             audioChunks = [];
 
-                            // Upload the audio file to the server
                             const formData = new FormData();
                             formData.append(
                                 "audio",
@@ -98,8 +186,6 @@
                     statusElement.innerText = "Recording stopped.";
                 });
             });
-
-            // PLAYBACK ////////////////////////////////////
 
             async function playButtonHandler() {
                 try {
