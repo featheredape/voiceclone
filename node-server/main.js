@@ -50,8 +50,8 @@ app.get("/play", async (req, res) => {
   //change stephen.m4a to outaudio.mp4
   formData.append(
     "speaker_ref_path",
-    `http://10.50.10.129:${PORT}/uploads/${req.query.uploadId}`,
-    //`http://10.50.10.129:${PORT}/uploads/stephen.m4a`,
+    //`http://10.50.10.129:${PORT}/uploads/${req.query.uploadId}`,
+    `http://10.50.10.129:${PORT}/uploads/stephen.m4a`,
   );
   console.log(req.query.uploadId);
   formData.append("guidance", "5.0");
