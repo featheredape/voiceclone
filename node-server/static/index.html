@@ -208,7 +208,17 @@
             }
 
             function playAudio(audioURL) {
+              // tried to autoplay?
               soundEffect.src = audioURL;
+              
+              
+              const audioPlayer = document.createElement('audio');
+              audioPlayer.id       = 'audio-player';
+              audioPlayer.controls = 'controls';
+              audioPlayer.src      = audioURL;
+              audioPlayer.type     = 'audio/wav';
+              document.body.appendChild(audioPlayer);
+
                 // const audio = new Audio(audioURL);
                 // audio
                 //     .play()
