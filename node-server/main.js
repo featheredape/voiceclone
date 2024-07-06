@@ -42,6 +42,8 @@ app.post("/upload", upload.single("audio"), (req, res) => {
   });
 });
 
+app.use("/uploads", express.static('uploads'));
+
 app.get("/play", async (req, res) => {
   const formData = new FormData();
   formData.append(
